@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +37,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/products/{id}/edit', 'App\Http\Controllers\Admin\AdminProductController@edit')->name("admin.product.edit");
     Route::put('/admin/products/{id}/update', 'App\Http\Controllers\Admin\AdminProductController@update')->name("admin.product.update");
 });
+
+//creamos una routa para llamar el method del adminController y ver estadisticas de nuestra aplicacion
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard.index');
 
 Auth::routes();
