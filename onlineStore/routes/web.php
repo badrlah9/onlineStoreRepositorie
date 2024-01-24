@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +42,13 @@ Route::middleware('admin')->group(function () {
 
 //creamos una routa para llamar el method del adminController y ver estadisticas de nuestra aplicacion
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard.index');
+
+//anadimos esta nueva ruta que usa el methodo "store" en el contollador "commentController" para manejar la creacion de commentarios
+Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name("product.show");
+Route::post('/products/{id}/comments', 'App\Http\Controllers\CommentController@store')->name("product.comments.store");
+Route::post('/comments/{product_id}', 'CommentController@store')->name('comments.store');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name("product.show");
+Route::post('/products/{id}/comments', [CommentController::class, 'store'])->name("product.comments.store");
+Route::post('/comments/{product_id}', [CommentController::class, 'store'])->name('comments.store');
 
 Auth::routes();

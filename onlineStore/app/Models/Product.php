@@ -39,6 +39,16 @@ class Product extends Model
         return $total;
     }
 
+
+    //creamos una nueva relacion para los commentarios
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+
+
+
     public function getId()
     {
         return $this->attributes['id'];
