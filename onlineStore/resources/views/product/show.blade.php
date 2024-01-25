@@ -51,7 +51,7 @@
         @endforeach
 
         <!-- Botón para abrir la sección de comentarios -->
-        <button class="btn btn-primary" id="add-comment-btn">Add Comment</button>
+        <button class="btn bg-primary text-white" id="add-comment-btn">Add Comment</button>
 
         <!-- Sección de comentarios oculta inicialmente -->
         <div id="comment-section" style="display: none;">
@@ -68,7 +68,7 @@
                     <input type="number" min="1" max="5" class="form-control" name="rating" id="rating" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn bg-primary text-white">Submit</button>
             </form>
         </div>
     </div>
