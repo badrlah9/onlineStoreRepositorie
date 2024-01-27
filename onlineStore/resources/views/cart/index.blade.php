@@ -31,7 +31,15 @@
       <div class="text-end">
         <a class="btn btn-outline-secondary mb-2"><b>Total to pay:</b> ${{ $viewData["total"] }}</a>
         @if (count($viewData["products"]) > 0)
-        <a href="{{ route('cart.purchase') }}" class="btn bg-primary text-white mb-2">Purchase</a>
+        <!-- <a href="{{ route('cart.purchase') }}" class="btn bg-primary text-white mb-2">Purchase</a> -->
+
+        <!-- Agregar formulario de pago contra reembolso -->
+        <form action="{{ route('cart.purchase') }}" method="post" class="mb-2">
+          @csrf
+          <input type="hidden" name="payment_method" value="cash_on_delivery">
+          <button type="submit" class="btn bg-primary text-white mb-2">Pay on Delivery</button>
+        </form>
+
         <a href="{{ route('cart.delete') }}">
           <button class="btn btn-danger mb-2">
             Remove all products from Cart

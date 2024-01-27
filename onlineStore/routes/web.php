@@ -51,4 +51,7 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name("product.
 Route::post('/products/{id}/comments', [CommentController::class, 'store'])->name("product.comments.store");
 Route::post('/comments/{product_id}', [CommentController::class, 'store'])->name('comments.store');
 
+// Ruta para procesar la compra en el carrito
+Route::post('/cart/purchase', 'App\Http\Controllers\CartController@purchase')->name('cart.purchase');
+
 Auth::routes();

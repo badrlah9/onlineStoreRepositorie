@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('total');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('payment_method')->nullable(); // Agrega la columna 'payment_method' para almacenar el método de pago de la orden
             $table->timestamps();
         });
     }

@@ -47,11 +47,13 @@ class CartController extends Controller
     public function purchase(Request $request)
     {
         $productsInSession = $request->session()->get("products");
+        $paymentMethod = $request->input('payment_method');
         if ($productsInSession) {
             $userId = Auth::user()->getId();
             $order = new Order();
             $order->setUserId($userId);
             $order->setTotal(0);
+            $order->setPaymentMethod($paymentMethod); // Agregar método de pago al modelo Order
             $order->save();
 
             $total = 0;

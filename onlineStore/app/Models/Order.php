@@ -26,6 +26,11 @@ class Order extends Model
             "user_id" => "required|exists:users,id",
         ]);
     }
+    //Set the payment method for the order.
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->attributes['payment_method'] = $paymentMethod;
+    }
     
     public function getId()
     {
