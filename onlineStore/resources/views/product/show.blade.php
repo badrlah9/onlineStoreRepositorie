@@ -36,6 +36,9 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-GLhlTQ8iUNt1iBRiFfYBjRzAl1oNj46GgkiR1SkD5S+8W8R+V4DTt4Ig9b" crossorigin="anonymous">
 
+//enlaces para el fonctionamiento de de ckeditor
+<script src="{{ asset('/vendors/ckeditor/ckeditor.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <!--Mostrar comentarios y calificaciones asociadas a un producto-->
 <div class="card mb-3">
@@ -60,11 +63,11 @@
 
                 <div class="mb-3">
                     <label for="comment">Comment:</label>
-                    <textarea class="form-control" name="comment" id="comment" rows="3" required></textarea>
+                    <textarea class="ckeditor" name="comment" id="comment" rows="3" required></textarea>
                 </div>
-
+                
                 <div class="mb-3">
-                    <label for="rating">Rating:</label>
+                    <label for="rating">Rating 0/5:</label>
                     <input type="number" min="1" max="5" class="form-control" name="rating" id="rating" required>
                 </div>
 
@@ -73,6 +76,29 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#comment-section form').submit(function() {
+            // Obtener el contenido del CKEditor
+            var editorContent = CKEDITOR.instances['comment'].getData();
+
+            // Limpiar el contenido para evitar etiquetas HTML no deseadas
+            var cleanContent = stripHtml(editorContent);
+
+            // Asignar el contenido limpio de vuelta al CKEditor
+            CKEDITOR.instances['comment'].setData(cleanContent);
+
+            // Continuar con el envío del formulario
+            return true;
+        });
+
+        // Función para eliminar todas las etiquetas HTML excepto las básicas
+        function stripHtml(html) {
+            var doc = new DOMParser().parseFromString(html, 'text/html');
+            return doc.body.textContent || "";
+        }
+    });
+</script>
 <script>
     // Código JavaScript para mostrar/ocultar la sección de comentarios
     document.getElementById('add-comment-btn').addEventListener('click', function () {
