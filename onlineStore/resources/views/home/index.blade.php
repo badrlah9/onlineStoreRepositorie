@@ -62,7 +62,7 @@
 
     // Control de reproducción automática del carrusel
     $('.carousel').carousel({
-        interval: 5000, // Cambia el intervalo en milisegundos según mi necesidades
+        interval: 4000, // Cambia el intervalo en milisegundos según mi necesidades
         pause: 'hover' // el caroussel Pausa al pasar el ratón sobre el carrusel
     });
 </script>

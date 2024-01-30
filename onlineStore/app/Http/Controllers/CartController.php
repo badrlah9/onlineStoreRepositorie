@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\UserInformation;
 
 class CartController extends Controller
 {
@@ -50,6 +51,16 @@ class CartController extends Controller
         $paymentMethod = $request->input('payment_method');
         if ($productsInSession) {
             $userId = Auth::user()->getId();
+
+            // Crear y almacenar la información del usuario
+            $userInformation = new UserInformation();
+            $userInformation->full_name = $request->input('firstName');
+            $userInformation->email = $request->input('email');
+            $userInformation->phone_number = $request->input('countryCode') . $request->input('number');
+            $userInformation->country = $request->input('country');
+            $userInformation->city_and_street = $request->input('address');
+            $userInformation->delivery_date = $request->input('deliveryDate');
+            $userInformation->save();
             $order = new Order();
             $order->setUserId($userId);
             $order->setTotal(0);
