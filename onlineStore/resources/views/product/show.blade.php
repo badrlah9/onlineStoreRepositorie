@@ -36,7 +36,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-GLhlTQ8iUNt1iBRiFfYBjRzAl1oNj46GgkiR1SkD5S+8W8R+V4DTt4Ig9b" crossorigin="anonymous">
 
-//enlaces para el fonctionamiento de de ckeditor
+<!--enlaces para el fonctionamiento de de ckeditor-->
 <script src="{{ asset('/vendors/ckeditor/ckeditor.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
